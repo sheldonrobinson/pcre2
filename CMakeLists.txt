@@ -1417,14 +1417,16 @@ endif()
 # CMake config files.
 set(PCRE2_CONFIG_IN ${PROJECT_SOURCE_DIR}/cmake/pcre2-config.cmake.in)
 set(PCRE2_CONFIG_OUT ${PROJECT_BINARY_DIR}/cmake/pcre2-config.cmake)
-configure_package_config_file(${PCRE2_CONFIG_IN} ${PCRE2_CONFIG_OUT} INSTALL_DESTINATION ${PCRE2_INSTALL_CMAKEDIR})
-set(PCRE2_CONFIG_VERSION_OUT ${PROJECT_BINARY_DIR}/cmake/pcre2-config-version.cmake)
-write_basic_package_version_file(
-  ${PCRE2_CONFIG_VERSION_OUT}
-  VERSION ${PCRE2_MAJOR}.${PCRE2_MINOR}.0
-  COMPATIBILITY SameMajorVersion
-)
+
 if(PCRE2_INSTALL)
+	configure_package_config_file(${PCRE2_CONFIG_IN} ${PCRE2_CONFIG_OUT} INSTALL_DESTINATION ${PCRE2_INSTALL_CMAKEDIR})
+	set(PCRE2_CONFIG_VERSION_OUT ${PROJECT_BINARY_DIR}/cmake/pcre2-config-version.cmake)
+	write_basic_package_version_file(
+	  ${PCRE2_CONFIG_VERSION_OUT}
+	  VERSION ${PCRE2_MAJOR}.${PCRE2_MINOR}.0
+	  COMPATIBILITY SameMajorVersion
+	)
+
 	install(FILES ${PCRE2_CONFIG_OUT} ${PCRE2_CONFIG_VERSION_OUT} DESTINATION ${PCRE2_INSTALL_CMAKEDIR})
 endif()
 
